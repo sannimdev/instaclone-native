@@ -37,3 +37,37 @@ Object {
   },
 }
 ```
+
+## 14.2
+
+```
+npm install @react-navigation/native
+```
+
+## 14.3
+
+```
+npm install styled-components
+```
+
+-   react-native-appearnce 패키지는 SDK 43의 EXPO SDK에서 제거되었으므로 다음과 같이 사용한다.
+
+    ```js
+    import { Appearance } from 'react-native';
+    ```
+
+-   [react-native-appearance](https://docs.expo.dev/versions/v41.0.0/sdk/appearance/)
+    Example app.json configuration
+    ```json
+    {
+        "expo": {
+            "userInterfaceStyle": "automatic",
+            "ios": {
+                "userInterfaceStyle": "light"
+            },
+            "android": {
+                "userInterfaceStyle": "dark"
+            }
+        }
+    }
+    ```

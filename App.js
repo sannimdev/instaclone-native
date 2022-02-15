@@ -6,6 +6,7 @@ import * as Font from 'expo-font';
 import { Asset } from 'expo-asset';
 import LoggedOutNav from './navigators/LoggedOutNav';
 import { NavigationContainer } from '@react-navigation/native';
+import { Appearance } from 'react-native';
 
 export default function App() {
     const [loading, setLoading] = useState(true);
@@ -22,6 +23,9 @@ export default function App() {
     if (loading) {
         return <AppLoading startAsync={preload} onError={console.warn} onFinish={onFinish} />;
     }
+    const subscription = Appearance.addChangeListener(({ colorScheme }) => {
+        console.log(colorScheme);
+    });
     return (
         <NavigationContainer>
             <LoggedOutNav />
