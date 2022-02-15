@@ -8,6 +8,7 @@ const Container = styled.View`
     align-items: center;
     justify-content: center;
     background-color: black;
+    padding: 0 40px;
 `;
 
 const Logo = styled.Image`
@@ -15,16 +16,21 @@ const Logo = styled.Image`
     height: 100px;
 `;
 
-const CreateAccount = styled.View`
+const CreateAccount = styled.TouchableOpacity`
     background-color: ${colors.blue};
-    padding: 7px 10px;
+    margin-top: 20px;
+    padding: 13px 10px;
     border-radius: 5px;
     font-weight: 600;
+    width: 100%;
+    opacity: ${(props) => (props.disabled ? '0.5' : '1')};
 `;
 
+/* text 관련 속성은 Text에서만 사용하도록 */
 const CreateAccountText = styled.Text`
     color: white;
     font-size: 16px;
+    text-align: center;
 `;
 
 const LoginLink = styled.Text`
@@ -39,11 +45,9 @@ export default function Welcome({ navigation }) {
     return (
         <Container>
             <Logo resizeMode="contain" source={require('../assets/logo.png')} />
-            <TouchableOpacity onPress={goToCreateAccount}>
-                <CreateAccount>
-                    <CreateAccountText>Create Account</CreateAccountText>
-                </CreateAccount>
-            </TouchableOpacity>
+            <CreateAccount disabled={false} onPress={goToCreateAccount}>
+                <CreateAccountText>Create Account</CreateAccountText>
+            </CreateAccount>
             <TouchableOpacity onPress={goToLogin}>
                 <LoginLink>Log in</LoginLink>
             </TouchableOpacity>
