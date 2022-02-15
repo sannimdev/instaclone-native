@@ -17,7 +17,6 @@ export default function App() {
         const fontPromises = fontsToLoad.map((font) => Font.loadAsync(font));
         const imagesToLoad = [require('./assets/logo.png')];
         const imagePromises = imagesToLoad.map((image) => Asset.loadAsync(image));
-        console.log(fontPromises);
         return Promise.all([...fontPromises, ...imagePromises]);
     };
     if (loading) {
