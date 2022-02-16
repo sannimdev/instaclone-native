@@ -15,20 +15,16 @@ export default function CreateAccount() {
         nextOne?.current?.focus();
     };
 
-    const onDone = () => {
-        alert('done!');
-    };
-
     const onValid = (data) => {
         console.log(data);
     };
 
     useEffect(() => {
-        register('firstName');
-        register('lastName');
-        register('username');
-        register('email');
-        register('password');
+        register('firstName', { required: true });
+        register('lastName', { required: true });
+        register('username', { required: true });
+        register('email', { required: true });
+        register('password', { required: true });
     }, [register]);
 
     return (
@@ -78,10 +74,10 @@ export default function CreateAccount() {
                 returnKeyType="done"
                 placeholderTextColor={'rgba(255,255,255,0.6)'}
                 onChangeText={(text) => setValue('password', text)}
-                onSubmitEditing={() => onDone()}
+                onSubmitEditing={handleSubmit(onValid)}
                 lastOne={true}
             />
-            <AuthButton text="Create Account" disabled={true} onPress={() => null} />
+            <AuthButton text="Create Account" loading onPress={handleSubmit(onValid)} />
         </AuthLayout>
     );
 }
