@@ -7,11 +7,14 @@ import { Asset } from 'expo-asset';
 import LoggedOutNav from './navigators/LoggedOutNav';
 import { NavigationContainer } from '@react-navigation/native';
 import { Appearance } from 'react-native';
-import { ApolloProvider } from '@apollo/client';
-import client from './apollo';
+import { ApolloProvider, useReactiveVar } from '@apollo/client';
+import client, { isLoggedInVar } from './apollo';
+import LoggedInNav from './navigators/LoggedInNav';
 
 export default function App() {
     const [loading, setLoading] = useState(true);
+    const isLoggedIn = useReactiveVar(isLoggedInVar); // Rendered more hooks than during the previous render.
+
     const onFinish = () => setLoading(false);
     const preload = () => {
         // 항사 ㅇpromise를 리턴해야 한다.
@@ -27,11 +30,10 @@ export default function App() {
     const subscription = Appearance.addChangeListener(({ colorScheme }) => {
         console.log(colorScheme);
     });
+
     return (
         <ApolloProvider client={client}>
-            <NavigationContainer>
-                <LoggedOutNav />
-            </NavigationContainer>
+            <NavigationContainer>{isLoggedIn ? <LoggedInNav /> : <LoggedOutNav />}</NavigationContainer>
         </ApolloProvider>
     );
 }

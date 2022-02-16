@@ -83,3 +83,11 @@ npm install react-hook-form
 ```
 npm i @apollo/client graphql
 ```
+
+## 14.13
+
+-   [Bottom Tabs Navigator](https://reactnavigation.org/docs/bottom-tab-navigator/)
+
+```
+ npm i @react-navigation/bottom-tabs
+```
