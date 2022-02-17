@@ -17,7 +17,7 @@ export default function StackNavFactory({ screenName }) {
             {screenName === 'Notifications' ? <Stack.Screen name="Notifications" component={Notifications} /> : null}
             {screenName === 'Me' ? <Stack.Screen name="Me" component={Me} /> : null}
             <Stack.Screen name="Profile" component={Profile} />
-            <Stack.Screen name="Photo\" component={Photo} />
+            <Stack.Screen name="Photo" component={Photo} />
         </Stack.Navigator>
     );
 }
