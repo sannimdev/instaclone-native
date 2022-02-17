@@ -1,15 +1,15 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Photo from '../../screen/Photo';
-import Profile from '../../screen/Profile';
-import Feed from '../../screen/Feed';
-import Search from '../../screen/Search';
-import Me from '../../screen/Me';
-import Notifications from '../../screen/Notifications';
+import Photo from '../screen/Photo';
+import Profile from '../screen/Profile';
+import Feed from '../screen/Feed';
+import Search from '../screen/Search';
+import Me from '../screen/Me';
+import Notifications from '../screen/Notifications';
 
 const Stack = createStackNavigator();
 
-export default function StackNavFactory({ screenName }) {
+export default function SharedStackNav({ screenName }) {
     return (
         <Stack.Navigator
             screenOptions={{
