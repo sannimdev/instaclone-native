@@ -91,3 +91,11 @@ npm i @apollo/client graphql
 ```
  npm i @react-navigation/bottom-tabs
 ```
+
+## 14.14
+
+-   [AsyncStorage](https://github.com/react-native-async-storage/async-storage)
+
+```
+expo install @react-native-async-storage/async-storage
+```
