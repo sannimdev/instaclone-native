@@ -8,21 +8,29 @@ import LoggedOutNav from './navigators/LoggedOutNav';
 import { NavigationContainer } from '@react-navigation/native';
 import { Appearance } from 'react-native';
 import { ApolloProvider, useReactiveVar } from '@apollo/client';
-import client, { isLoggedInVar } from './apollo';
+import client, { isLoggedInVar, tokenVar } from './apollo';
 import LoggedInNav from './navigators/LoggedInNav';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
     const [loading, setLoading] = useState(true);
     const isLoggedIn = useReactiveVar(isLoggedInVar); // Rendered more hooks than during the previous render.
-
-    const onFinish = () => setLoading(false);
-    const preload = () => {
-        // 항사 ㅇpromise를 리턴해야 한다.
+    const preloadAssets = () => {
+        // 항상 ㅇpromise를 리턴해야 한다.
         const fontsToLoad = [Ionicons.font];
         const fontPromises = fontsToLoad.map((font) => Font.loadAsync(font));
         const imagesToLoad = [require('./assets/logo.png')];
         const imagePromises = imagesToLoad.map((image) => Asset.loadAsync(image));
         return Promise.all([...fontPromises, ...imagePromises]);
+    };
+    const onFinish = () => setLoading(false);
+    const preload = async () => {
+        const token = await AsyncStorage.getItem('token');
+        if (token) {
+            isLoggedInVar(true);
+            tokenVar(token);
+        }
+        return preloadAssets();
     };
     if (loading) {
         return <AppLoading startAsync={preload} onError={console.warn} onFinish={onFinish} />;
