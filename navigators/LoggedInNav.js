@@ -5,6 +5,8 @@ import Feed from '../screen/Feed';
 import Search from '../screen/Search';
 import Notifications from '../screen/Notifications';
 import Profile from '../screen/Profile';
+import { View } from 'react-native';
+import TabIcon from '../components/nav/TabIcon';
 
 const Tabs = createBottomTabNavigator();
 
@@ -25,8 +27,8 @@ export default function LoggedInNav() {
                 name="Feed"
                 component={Feed}
                 options={{
-                    tabBarIcon: ({ focused, color, size }) => (
-                        <Ionicons name="home" color={color} size={focused ? 24 : 20} />
+                    tabBarIcon: ({ focused, color /*, size*/ }) => (
+                        <TabIcon iconName="home" focused={focused} color={color} />
                     ),
                 }}
             />
@@ -34,8 +36,17 @@ export default function LoggedInNav() {
                 name="Search"
                 component={Search}
                 options={{
-                    tabBarIcon: ({ focused, color, size }) => (
-                        <Ionicons name="search" color={color} size={focused ? 24 : 20} />
+                    tabBarIcon: ({ focused, color /*, size*/ }) => (
+                        <TabIcon iconName="search" focused={focused} color={color} />
+                    ),
+                }}
+            />
+            <Tabs.Screen
+                name="Camera"
+                component={View}
+                options={{
+                    tabBarIcon: ({ focused, color /*, size*/ }) => (
+                        <TabIcon iconName="camera" focused={focused} color={color} />
                     ),
                 }}
             />
@@ -43,8 +54,8 @@ export default function LoggedInNav() {
                 name="Notifications"
                 component={Notifications}
                 options={{
-                    tabBarIcon: ({ focused, color, size }) => (
-                        <Ionicons name={focused ? 'heart' : 'heart-outline'} color={color} size={focused ? 24 : 20} />
+                    tabBarIcon: ({ focused, color /*, size*/ }) => (
+                        <TabIcon iconName="heart" focused={focused} color={color} />
                     ),
                 }}
             />
@@ -52,8 +63,8 @@ export default function LoggedInNav() {
                 name="Profile"
                 component={Profile}
                 options={{
-                    tabBarIcon: ({ focused, color, size }) => (
-                        <Ionicons name="person" color={color} size={focused ? 24 : 20} />
+                    tabBarIcon: ({ focused, color /*, size*/ }) => (
+                        <TabIcon iconName="person" focused={focused} color={color} />
                     ),
                 }}
             />
