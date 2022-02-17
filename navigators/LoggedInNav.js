@@ -1,9 +1,5 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Feed from '../screen/Feed';
-import Search from '../screen/Search';
-import Notifications from '../screen/Notifications';
-import Me from '../screen/Me';
 import { View } from 'react-native';
 import TabIcon from '../components/nav/TabIcon';
 import StackNavFactory from '../components/nav/StackNavFactory';
