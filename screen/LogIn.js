@@ -16,8 +16,13 @@ const LOGIN_MUTATION = gql`
     }
 `;
 
-export default function LogIn({ navigation }) {
-    const { register, handleSubmit, setValue, watch } = useForm();
+export default function LogIn({ route: { params } }) {
+    const { register, handleSubmit, setValue, watch } = useForm({
+        defaultValues: {
+            username: params?.username,
+            password: params?.password,
+        },
+    });
     const onCompleted = (data) => {
         const {
             login: { ok, token },
@@ -33,7 +38,6 @@ export default function LogIn({ navigation }) {
     };
     const onValid = (data) => {
         if (!loading) {
-            console.log(data, '입력 중...');
             logInMutation({
                 variables: {
                     ...data,
@@ -51,6 +55,7 @@ export default function LogIn({ navigation }) {
         <AuthLayout>
             <TextInput
                 autoFocus
+                value={watch('username')}
                 placeholder="Username"
                 placeholderTextColor="gray"
                 autoCapitalize="none"
@@ -61,6 +66,7 @@ export default function LogIn({ navigation }) {
             />
             <TextInput
                 ref={passwordRef}
+                value={watch('password')}
                 placeholder="Password"
                 placeholderTextColor="gray"
                 secureTextEntry

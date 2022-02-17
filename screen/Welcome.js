@@ -41,7 +41,7 @@ const LoginLink = styled.Text`
 
 export default function Welcome({ navigation }) {
     const goToCreateAccount = () => navigation.navigate('CreateAccount');
-    const goToLogin = () => navigation.navigate('LogIn');
+    const goToLogin = () => navigation.navigate('LogIn', { username: 'ddd', password: 'ff' });
     return (
         <Container>
             <Logo resizeMode="contain" source={require('../assets/logo.png')} />
