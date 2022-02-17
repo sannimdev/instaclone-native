@@ -6,12 +6,14 @@ import Feed from '../screen/Feed';
 import Search from '../screen/Search';
 import Me from '../screen/Me';
 import Notifications from '../screen/Notifications';
+import { Image } from 'react-native';
 
 const Stack = createStackNavigator();
 
 export default function SharedStackNav({ screenName }) {
     return (
         <Stack.Navigator
+            headerMode="screen"
             screenOptions={{
                 headerBackTitleVisible: false, // 이전 화면 title 보일지 여부
                 headerTintColor: 'white',
@@ -21,7 +23,21 @@ export default function SharedStackNav({ screenName }) {
                 },
             }}
         >
-            {screenName === 'Feed' ? <Stack.Screen name="Feed" component={Feed} /> : null}
+            {screenName === 'Feed' ? (
+                <Stack.Screen
+                    name="Feed"
+                    component={Feed}
+                    options={{
+                        headerTitle: () => (
+                            <Image
+                                style={{ maxHeight: 40 }}
+                                resizeMode="contain"
+                                source={require('../assets/logo.png')}
+                            />
+                        ),
+                    }}
+                />
+            ) : null}
             {screenName === 'Search' ? <Stack.Screen name="Search" component={Search} /> : null}
             {screenName === 'Notifications' ? <Stack.Screen name="Notifications" component={Notifications} /> : null}
             {screenName === 'Me' ? <Stack.Screen name="Me" component={Me} /> : null}
