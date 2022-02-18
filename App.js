@@ -35,9 +35,9 @@ export default function App() {
     if (loading) {
         return <AppLoading startAsync={preload} onError={console.warn} onFinish={onFinish} />;
     }
-    const subscription = Appearance.addChangeListener(({ colorScheme }) => {
-        console.log(colorScheme);
-    });
+    // const subscription = Appearance.addChangeListener(({ colorScheme }) => {
+    //     // console.log(colorScheme); 테마 변경 감지
+    // });
 
     return (
         <ApolloProvider client={client}>
