@@ -6,7 +6,6 @@ import * as Font from 'expo-font';
 import { Asset } from 'expo-asset';
 import LoggedOutNav from './navigators/LoggedOutNav';
 import { NavigationContainer } from '@react-navigation/native';
-import { Appearance } from 'react-native';
 import { ApolloProvider, useReactiveVar } from '@apollo/client';
 import client, { isLoggedInVar, tokenVar } from './apollo';
 import LoggedInNav from './navigators/LoggedInNav';

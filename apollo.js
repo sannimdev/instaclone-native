@@ -9,7 +9,6 @@ const TOKEN = 'token';
 
 export const logUserIn = async (token) => {
     await AsyncStorage.setItem(TOKEN, token);
-    console.log('토큰받음', token);
     isLoggedInVar(true);
     tokenVar(token);
 };
@@ -21,7 +20,7 @@ export const logUserOut = async () => {
 };
 
 const httpLink = createHttpLink({
-    uri: 'http://eac1-220-78-126-60.ngrok.io/graphql',
+    uri: 'http://e56b-220-78-126-60.ngrok.io/graphql',
     credentials: 'include',
 });
 
