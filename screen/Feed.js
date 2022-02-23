@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { FlatList } from 'react-native';
 import Photo from '../components/Photo';
@@ -6,8 +6,8 @@ import ScreenLayout from '../components/ScreenLayout';
 import { COMMENT_FRAGMENT, PHOTO_FRAGMENT } from '../fragments';
 
 const FEED_QUERY = gql`
-    query seeFeed {
-        seeFeed {
+    query seeFeed($offset: Int!) {
+        seeFeed(offset: $offset) {
             ...PhotoFragment
             user {
                 username
@@ -38,6 +38,10 @@ export default function Feed({ navigation }) {
         await refetch();
         setRefreshing(false);
     };
+
+    useEffect(() => {
+        console.log(loading, data);
+    }, [loading, data]);
 
     const [refreshing, setRefreshing] = useState(false);
     return (
