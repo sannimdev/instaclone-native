@@ -99,3 +99,8 @@ npm i @apollo/client graphql
 ```
 expo install @react-native-async-storage/async-storage
 ```
+
+## 15.10 Infinite Scrolling part One
+
+-   onEndReached: 사용자가 스크롤의 마지막에 도달했다고 react native가 인지
+-

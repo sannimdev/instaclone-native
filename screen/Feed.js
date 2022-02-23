@@ -26,8 +26,8 @@ const FEED_QUERY = gql`
 `;
 
 export default function Feed({ navigation }) {
-    const result = useQuery(FEED_QUERY);
-    const { loading, data, refetch } = result;
+    const result = useQuery(FEED_QUERY, { variables: { offset: 0 } });
+    const { loading, data, refetch, fetchMore } = result;
 
     const renderPhoto = ({ item: photo }) => {
         return <Photo {...photo} />;
@@ -43,6 +43,12 @@ export default function Feed({ navigation }) {
     return (
         <ScreenLayout loading={loading}>
             <FlatList
+                onEndReachedThreshold={0.1}
+                onEndReached={() =>
+                    fetchMore({
+                        variables: { offset: data?.seeFeed?.length },
+                    })
+                }
                 refreshing={refreshing}
                 onRefresh={refresh}
                 style={{ width: '100%' }}
