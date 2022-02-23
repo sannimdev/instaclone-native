@@ -39,15 +39,11 @@ export default function Feed({ navigation }) {
         setRefreshing(false);
     };
 
-    useEffect(() => {
-        console.log(loading, data);
-    }, [loading, data]);
-
     const [refreshing, setRefreshing] = useState(false);
     return (
         <ScreenLayout loading={loading}>
             <FlatList
-                onEndReachedThreshold={0.1}
+                onEndReachedThreshold={0.02}
                 onEndReached={() =>
                     fetchMore({
                         variables: { offset: data?.seeFeed?.length },
