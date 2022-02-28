@@ -1,86 +1,15 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Image, View } from 'react-native';
-import TabIcon from '../components/nav/TabIcon';
-import SharedStackNav from './SharedStackNav';
-import useMe from '../hook/useMe';
+import { createStackNavigator } from '@react-navigation/stack';
+import TabsNav from './TabsNav';
+import Upload from '../screen/Upload';
 
-const Tabs = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export default function LoggedInNav() {
-    const { data } = useMe();
     return (
-        <Tabs.Navigator
-            screenOptions={{
-                headerShown: false,
-                tabBarShowLabel: false,
-                tabBarStyle: {
-                    backgroundColor: 'black',
-                    borderTopColor: 'rgba(255,255,255,0.2)',
-                },
-                tabBarActiveTintColor: 'white',
-            }}
-        >
-            <Tabs.Screen
-                name="FeedRoot"
-                options={{
-                    tabBarIcon: ({ focused, color /*, size*/ }) => (
-                        <TabIcon iconName="home" focused={focused} color={color} />
-                    ),
-                }}
-            >
-                {() => <SharedStackNav screenName="Feed" />}
-            </Tabs.Screen>
-            <Tabs.Screen
-                name="SearchRoot"
-                options={{
-                    tabBarIcon: ({ focused, color /*, size*/ }) => (
-                        <TabIcon iconName="search" focused={focused} color={color} />
-                    ),
-                }}
-            >
-                {() => <SharedStackNav screenName="Search" />}
-            </Tabs.Screen>
-            <Tabs.Screen
-                name="CameraRoot"
-                component={View}
-                options={{
-                    tabBarIcon: ({ focused, color /*, size*/ }) => (
-                        <TabIcon iconName="camera" focused={focused} color={color} />
-                    ),
-                }}
-            />
-            <Tabs.Screen
-                name="NotificationsRoot"
-                options={{
-                    tabBarIcon: ({ focused, color /*, size*/ }) => (
-                        <TabIcon iconName="heart" focused={focused} color={color} />
-                    ),
-                }}
-            >
-                {() => <SharedStackNav screenName="Notifications" />}
-            </Tabs.Screen>
-            <Tabs.Screen
-                name="MeRoot"
-                options={{
-                    tabBarIcon: ({ focused, color /*, size*/ }) =>
-                        data?.me?.avatar ? (
-                            <Image
-                                source={{ uri: data.me.avatar }}
-                                style={{
-                                    width: 20,
-                                    height: 20,
-                                    borderRadius: 10,
-                                    // ...(focused && { borderColor: 'white', borderWidth: 1 }), 안드로이드에서 튕김
-                                }}
-                            />
-                        ) : (
-                            <TabIcon iconName="person" focused={focused} color={color} />
-                        ),
-                }}
-            >
-                {() => <SharedStackNav screenName="Me" />}
-            </Tabs.Screen>
-        </Tabs.Navigator>
+        <Stack.Navigator screenOptions={{ headerMode: 'none', mode: 'modal' }}>
+            <Stack.Screen name="Tabs" component={TabsNav} />
+            <Stack.Screen name="Upload" component={Upload} />
+        </Stack.Navigator>
     );
 }
