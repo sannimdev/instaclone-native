@@ -117,3 +117,13 @@ npm i apollo3-cache-persist
 ```
 npm install @react-navigation/material-top-tabs react-native-tab-view
 ```
+
+## 17.4
+
+```js
+import * as MediaLibrary from 'expo-media-library';
+```
+
+```
+npm install expo-media-library
+```
