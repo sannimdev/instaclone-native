@@ -104,8 +104,16 @@ expo install @react-native-async-storage/async-storage
 
 -   onEndReached: 사용자가 스크롤의 마지막에 도달했다고 react native가 인지
 
-## 15. 12. Cache Persist
+## 15.12 Cache Persist
 
 ```
 npm i apollo3-cache-persist
+```
+
+## 17.1 Bottom Tabs Navigator
+
+-   [참고](https://reactnavigation.org/docs/material-top-tab-navigator/)
+
+```
+npm install @react-navigation/material-top-tabs react-native-tab-view
 ```
