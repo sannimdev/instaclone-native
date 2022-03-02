@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import { Ionicons } from '@expo/vector-icons';
 import * as MediaLibrary from 'expo-media-library';
-import { FlatList, Image, TouchableOpacity, useWindowDimensions } from 'react-native';
+import { FlatList, Image, useWindowDimensions } from 'react-native';
+import { colors } from '../colors';
+
 const Container = styled.View`
     flex: 1;
     background-color: black;
@@ -25,7 +27,14 @@ const IconContainer = styled.View`
     right: 0px;
 `;
 
-export default function SelectPhoto() {
+const HeaderRightText = styled.Text`
+    color: ${colors.blue};
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 7px;
+`;
+
+export default function SelectPhoto({ navigation }) {
     const [ok, setOk] = useState(false);
     const [photos, setPhotos] = useState([]);
     const [chosenPhoto, setChosenPhoto] = useState('');
@@ -48,6 +57,11 @@ export default function SelectPhoto() {
             getPhotos();
         }
     };
+    const HeaderRight = () => (
+        <TouchableOpacity>
+            <HeaderRightText>Next</HeaderRightText>
+        </TouchableOpacity>
+    );
 
     useEffect(() => {
         getPermissions();
@@ -61,9 +75,7 @@ export default function SelectPhoto() {
     const renderItem = ({ item: photo }) => (
         <ImageContainer onPress={() => choosePhoto(photo.uri)}>
             <Image source={{ uri: photo.uri }} style={{ width: width / numColumns, height: 100 }} />
-            <IconContainer>
-                <Ionicons name="checkmark-circle" size={18} color="white" />
-            </IconContainer>
+            <Ionicons name="checkmark-circle" size={18} color={photo.uri === chosenPhoto ? colors.blue : 'white'} />
         </ImageContainer>
     );
 
