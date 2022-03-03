@@ -31,7 +31,7 @@ export default function LogIn({ route: { params } }) {
             await logUserIn(token);
         }
     };
-    const [logInMutation, { loading }] = useMutation(LOGIN_MUTATION, { onCompleted });
+    const [logInMutation, { loading, error }] = useMutation(LOGIN_MUTATION, { onCompleted });
     const passwordRef = useRef();
     const onNext = (nextOne) => {
         nextOne?.current?.focus();

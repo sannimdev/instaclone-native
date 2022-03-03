@@ -127,3 +127,9 @@ import * as MediaLibrary from 'expo-media-library';
 ```
 npm install expo-media-library
 ```
+
+## 17.6
+
+```
+npm install expo-camera
+```
