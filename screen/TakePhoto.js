@@ -27,12 +27,12 @@ export default function TakePhoto() {
     const [ok, setOk] = useState(false);
     const [cameraType, setCameraType] = useState(Camera.Constants.Type.back);
     const getPermissions = async () => {
-        const { granted } = await Camera.requestPermissionsAsync();
+        const { granted } = await Camera.requestCameraPermissionsAsync();
         setOk(granted);
     };
     useEffect(() => {
         getPermissions();
-    }, []);
+    }, [ok]);
 
     return (
         <Container>
