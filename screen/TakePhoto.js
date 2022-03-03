@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Alert, Image, StatusBar, Text, TouchableOpacity } from 'react-native';
 import Slider from '@react-native-community/slider';
 import styled from 'styled-components/native';
+import { useIsFocused } from '@react-navigation/core';
 
 const Container = styled.View`
     flex: 1;
@@ -113,10 +114,11 @@ export default function TakePhoto({ navigation }) {
         }
     };
     const onDismiss = () => setTakenPhoto('');
+    const isFocused = useIsFocused();
 
     return (
         <Container>
-            <StatusBar hidden={true} />
+            {isFocused ? <StatusBar hidden={true} /> : null}
             {takenPhoto === '' ? (
                 <Camera
                     type={cameraType}
