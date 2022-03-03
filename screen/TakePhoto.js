@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Camera } from 'expo-camera';
 import { Ionicons } from '@expo/vector-icons';
-import { Image, StatusBar, Text, TouchableOpacity } from 'react-native';
+import { Alert, Image, StatusBar, Text, TouchableOpacity } from 'react-native';
 import Slider from '@react-native-community/slider';
 import styled from 'styled-components/native';
 
@@ -38,14 +38,35 @@ const TakePhotoBtn = styled.TouchableOpacity`
     border: 2px solid rgba(255, 255, 255, 0.8);
     border-radius: 50px;
 `;
+const PhotoActions = styled(Actions)`
+    flex-direction: row;
+`;
 const PhotoAction = styled.TouchableOpacity`
     background-color: white;
-    padding: 5px 10px;
+    padding: 10px 25px;
     border-radius: 4px;
 `;
 const PhotoActionText = styled.Text`
     font-weight: 600;
 `;
+const goToUpload = async (save) => {
+    if (save) {
+        await MediaLibrary.saveToLibraryAsync(takenPhoto);
+    }
+    console.log('Will upload', takenPhoto);
+};
+const onUpload = () => {
+    Alert.alert('Save photo?', 'Save photo & upload or just upload', [
+        {
+            text: 'Save & Upload',
+            onPress: () => goToUpload(true),
+        },
+        {
+            text: 'Just Upload',
+            onPress: () => goToUpload(false),
+        },
+    ]);
+};
 
 export default function TakePhoto({ navigation }) {
     const camera = useRef();
@@ -117,6 +138,7 @@ export default function TakePhoto({ navigation }) {
                     <SliderContainer>
                         <Slider
                             style={{ width: 200, height: 20 }}
+                            value={zoom}
                             minimumValue={0}
                             maximumValue={1}
                             minimumTrackTintColor="#FFFFFF"
@@ -153,7 +175,7 @@ export default function TakePhoto({ navigation }) {
                     </ButtonsContainer>
                 </Actions>
             ) : (
-                <Actions>
+                <PhotoActions>
                     <PhotoAction onPress={onDismiss}>
                         <PhotoActionText>Dismiss</PhotoActionText>
                     </PhotoAction>
@@ -163,7 +185,7 @@ export default function TakePhoto({ navigation }) {
                     <PhotoAction>
                         <PhotoActionText>Save &amp; Upload</PhotoActionText>
                     </PhotoAction>
-                </Actions>
+                </PhotoActions>
             )}
         </Container>
     );
