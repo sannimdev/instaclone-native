@@ -72,17 +72,17 @@ export default function SelectPhoto({ navigation }) {
     useEffect(() => {
         getPermissions();
     }, [ok]);
+    const choosePhoto = (uri) => {
+        setChosenPhoto(uri);
+    };
     useEffect(() => {
         navigation.setOptions({
             headerRight: HeaderRight,
         });
-    }, []);
+    }, [choosePhoto]);
 
     const numColumns = 4;
     const { width } = useWindowDimensions();
-    const choosePhoto = (uri) => {
-        setChosenPhoto(uri);
-    };
     const renderItem = ({ item: photo }) => (
         <ImageContainer onPress={() => choosePhoto(photo.uri)}>
             <Image source={{ uri: photo.uri }} style={{ width: width / numColumns, height: 100 }} />
