@@ -139,3 +139,10 @@ npm install expo-camera
 ```
 expo install @react-native-community/slider
 ```
+
+## 17.14
+
+```
+npm install apollo-upload-client
+expo install expo-file-system
+```
