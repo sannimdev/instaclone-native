@@ -133,3 +133,9 @@ npm install expo-media-library
 ```
 npm install expo-camera
 ```
+
+## 17.7
+
+```
+expo install @react-native-community/slider
+```
